@@ -15,17 +15,12 @@ app.use(express.json());
 // API Routes
 app.use("/api/jobs", jobRoutes);
 
-// Serve static files from the React app
-const distPath = path.join(__dirname, "../dist");
-app.use(express.static(distPath));
+// Export the app for Vercel
+export default app;
 
-// For any other request that isn't an API call, send back index.html
-app.get(/^(?!\/api).+/, (req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
-});
-
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT} 🚀`);
-});
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT} 🚀`);
+  });
+}
