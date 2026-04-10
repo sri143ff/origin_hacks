@@ -8,38 +8,51 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
-    <div className="h-16 bg-white/80 backdrop-blur-md border-b shadow-sm flex justify-between items-center px-6">
+    <header style={{ height: '80px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 var(--space-xl)', borderBottom: '1px solid var(--glass-border)', background: 'rgba(10, 11, 16, 0.5)', backdropFilter: 'blur(10px)', sticky: 'top', zIndex: 100 }}>
+      
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', flex: 1 }}>
+        <div className="glass" style={{ padding: '8px 16px', display: 'flex', alignItems: 'center', gap: '8px', flex: '0 1 400px' }}>
+          <span>🔍</span>
+          <input 
+            type="text" 
+            placeholder="Search skills, jobs, or mentors..." 
+            onKeyPress={(e) => e.key === 'Enter' && alert('Global search result for: ' + e.target.value)}
+            style={{ background: 'transparent', border: 'none', color: 'var(--text-main)', width: '100%', outline: 'none', fontSize: '0.9rem' }} 
+          />
+        </div>
+      </div>
 
-      <h2 className="text-lg font-semibold text-blue-600">
-        Welcome, {user?.name || "User"} 
-      </h2>
-
-      <div className="flex items-center gap-4">
-
-        {/* Avatar */}
-        <div className="flex items-center gap-2 bg-white shadow px-3 py-1 rounded-full">
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center justify-center rounded-full">
-            {user?.name?.charAt(0).toUpperCase()}
-          </div>
-
-          <span className="text-sm font-medium">
-            {user?.name}
-          </span>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-lg)' }}>
+        <div 
+          onClick={() => alert('Notification Center: You have 3 new skill endorsements and 1 job interview request!')}
+          style={{ position: 'relative', cursor: 'pointer' }}
+        >
+          <span style={{ fontSize: '1.2rem' }}>🔔</span>
+          <div style={{ position: 'absolute', top: '-2px', right: '-2px', width: '8px', height: '8px', background: 'var(--secondary)', borderRadius: '50%', boxShadow: '0 0 10px var(--secondary-glow)' }}></div>
         </div>
 
-        {/* Logout */}
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 text-white px-3 py-1 rounded hover:scale-105 transition"
-        >
-          Logout
-        </button>
-
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontSize: '0.9rem', fontWeight: '600' }}>{user?.name || "Explorer"}</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Student • Pro</div>
+          </div>
+          <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: 'linear-gradient(135deg, var(--primary), var(--secondary))', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1.2rem', cursor: 'pointer', border: '1px solid var(--glass-border)' }}>
+            👤
+          </div>
+          <button
+            onClick={handleLogout}
+            className="btn-secondary"
+            style={{ padding: '6px 14px', fontSize: '0.8rem', borderRadius: '8px' }}
+          >
+            Logout
+          </button>
+        </div>
       </div>
-    </div>
+
+    </header>
   );
 }

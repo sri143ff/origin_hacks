@@ -1,18 +1,21 @@
-import Navbar from "./NavBar";
 import Sidebar from "./Sidebar";
+import Navbar from "./Navbar";
 
 export default function MainLayout({ children }) {
   return (
-    <div className="flex w-full min-h-screen bg-gradient-to-br from-gray-100 via-blue-50 to-purple-100">
-      {/* Sidebar */}
+    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-dark)' }}>
+      <div className="mesh-bg"></div>
+      
       <Sidebar />
 
-      {/* Content */}
-      <div className="flex-1 flex flex-col">
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100vh', overflowY: 'auto' }}>
         <Navbar />
 
-        <div className="p-6">{children}</div>
+        <main style={{ padding: 'var(--space-lg) var(--space-xl)', maxWidth: '1400px', width: '100%', margin: '0 auto' }}>
+          {children}
+        </main>
       </div>
+
     </div>
   );
 }

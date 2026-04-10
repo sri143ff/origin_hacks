@@ -6,6 +6,10 @@ import Dashboard from "../Pages/Dashboard";
 import Profile from "../Pages/Profile";
 import Jobs from "../Pages/Jobs";
 import Learning from "../Pages/Learning";
+import Projects from "../Pages/Projects";
+import Resume from "../Pages/Resume";
+import CompanyDashboard from "../Pages/CompanyDashboard";
+import Mentorship from "../Pages/Mentorship";
 import NotFound from "../Pages/NotFound";
 import Login from "../Pages/login";
 import Signup from "../Pages/signUp";
@@ -33,6 +37,24 @@ export default function AppRoutes() {
       />
 
       <Route
+        path="/company"
+        element={
+          <ProtectedRoute>
+            <CompanyDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/mentorship"
+        element={
+          <ProtectedRoute>
+            <Mentorship />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
         path="/profile"
         element={
           <ProtectedRoute>
@@ -55,6 +77,24 @@ export default function AppRoutes() {
         element={
           <ProtectedRoute>
             <Learning />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/projects"
+        element={
+          <ProtectedRoute>
+            <Projects />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/resume"
+        element={
+          <ProtectedRoute>
+            <Resume />
           </ProtectedRoute>
         }
       />
